@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Portal - Open Positions</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="brand-logo" data-testid="portal-logo">
+        JobStream Careers
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" data-testid="nav-jobs">Jobs</a>
+        <a href="/reports/report.html" target="_blank" data-testid="nav-reports">QA Test Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Find Your Next Impactful Role</h1>
+      <p>Browse open opportunities, explore requirements, and apply directly.</p>
+      
+      <div class="search-bar-container">
+        <input 
+          type="text" 
+          id="search-input" 
+          class="search-input" 
+          placeholder="Search by job title or keyword..."
+          data-testid="search-input"
+        >
+      </div>
+    </section>
+
+    <section>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Available Opportunities</h2>
+        <span id="jobs-count" data-testid="jobs-count" style="color: var(--text-muted); font-size: 0.9rem;">Loading positions...</span>
+      </div>
+
+      <div id="jobs-container" class="jobs-grid" data-testid="jobs-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 JobStream Career Portal - Mock Application for QA Automation Testing</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      loadJobListings();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Details & Application - Career Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="brand-logo" data-testid="portal-logo">
+        JobStream Careers
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" data-testid="nav-jobs">Jobs</a>
+        <a href="/reports/report.html" target="_blank" data-testid="nav-reports">QA Test Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <a href="index.html" class="back-link" data-testid="back-to-jobs">
+      &larr; Back to all job openings
+    </a>
+
+    <div class="job-detail-layout">
+      <!-- Left Column: Job Details -->
+      <section class="detail-card" id="job-details-container" data-testid="job-details-container">
+        <span class="job-badge" id="detail-dept" data-testid="job-detail-department">Engineering</span>
+        <h2 id="detail-title" data-testid="job-detail-title">Loading position...</h2>
+        
+        <div class="detail-pills">
+          <span class="pill" id="detail-location" data-testid="job-detail-location">Location</span>
+          <span class="pill pill-salary" id="detail-salary" data-testid="job-detail-salary">Salary</span>
+          <span class="pill" id="detail-experience" data-testid="job-detail-experience">Experience</span>
+        </div>
+
+        <h3 class="section-subtitle">About the Role</h3>
+        <p id="detail-description" data-testid="job-detail-description" style="color: var(--secondary); margin-bottom: 1.5rem;">
+          Loading role overview...
+        </p>
+
+        <h3 class="section-subtitle">Key Qualifications & Responsibilities</h3>
+        <ul class="requirements-list" id="detail-requirements" data-testid="job-detail-requirements">
+          <!-- Populated by app.js -->
+        </ul>
+      </section>
+
+      <!-- Right Column: Application Form -->
+      <section class="form-card" data-testid="application-form-container">
+        <h2>Submit Your Application</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Complete the form below to apply. All fields marked with <span class="required" style="color: var(--error-border);">*</span> are required.
+        </p>
+
+        <!-- Success Alert Banner -->
+        <div id="success-alert" class="alert alert-success" data-testid="submission-success">
+          <strong>Application Received!</strong>
+          <p id="success-message-text">Your application was submitted successfully.</p>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+            Application Reference ID: <strong id="application-id" data-testid="application-id">APP-0000</strong>
+          </p>
+        </div>
+
+        <!-- Error Alert Banner -->
+        <div id="error-alert" class="alert alert-error" data-testid="submission-error">
+          <strong id="error-heading">Submission Failed</strong>
+          <p id="error-message-text">There was a problem submitting your application. Please check the details and try again.</p>
+        </div>
+
+        <!-- Application Form -->
+        <form id="application-form" data-testid="application-form" novalidate>
+          <input type="hidden" id="jobId" name="jobId" value="">
+
+          <div class="form-group">
+            <label for="fullName">Full Name <span class="required">*</span></label>
+            <input 
+              type="text" 
+              id="fullName" 
+              name="fullName" 
+              class="form-control" 
+              placeholder="e.g. Jane Doe"
+              data-testid="input-fullname"
+              required
+            >
+            <div id="error-fullname" class="field-error-message" data-testid="error-fullname"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-control" 
+              placeholder="e.g. jane.doe@example.com"
+              data-testid="input-email"
+              required
+            >
+            <div id="error-email" class="field-error-message" data-testid="error-email"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number <span class="required">*</span></label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone" 
+              class="form-control" 
+              placeholder="e.g. +1 555-019-2834"
+              data-testid="input-phone"
+              required
+            >
+            <div id="error-phone" class="field-error-message" data-testid="error-phone"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="resume">Resume / CV (PDF, DOCX, DOC, TXT) <span class="required">*</span></label>
+            <input 
+              type="file" 
+              id="resume" 
+              name="resume" 
+              class="form-control" 
+              accept=".pdf,.docx,.doc,.txt"
+              data-testid="input-resume"
+              required
+            >
+            <div id="error-resume" class="field-error-message" data-testid="error-resume"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="portfolioUrl">Portfolio / LinkedIn Profile (Optional)</label>
+            <input 
+              type="url" 
+              id="portfolioUrl" 
+              name="portfolioUrl" 
+              class="form-control" 
+              placeholder="e.g. https://linkedin.com/in/janedoe"
+              data-testid="input-portfolio"
+            >
+            <div id="error-portfolio" class="field-error-message" data-testid="error-portfolio"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="coverNote">Cover Note / Brief Summary (Optional)</label>
+            <textarea 
+              id="coverNote" 
+              name="coverNote" 
+              class="form-control" 
+              rows="3" 
+              placeholder="Tell us briefly why you are interested in this role..."
+              data-testid="input-covernote"
+            ></textarea>
+          </div>
+
+          <!-- QA Simulation Controls -->
+          <fieldset class="simulation-panel" data-testid="simulation-panel">
+            <legend>Environment & Failure Simulation Controls</legend>
+            <div class="simulation-options">
+              <label>
+                <input type="checkbox" id="simulate-error" data-testid="simulate-error-checkbox">
+                Simulate Server Error (HTTP 500)
+              </label>
+              <label>
+                <input type="checkbox" id="simulate-delay" data-testid="simulate-delay-checkbox">
+                Simulate Slow Network (3s delay)
+              </label>
+            </div>
+          </fieldset>
+
+          <div style="margin-top: 1.5rem;">
+            <button 
+              type="submit" 
+              id="submit-btn" 
+              class="btn btn-primary" 
+              style="width: 100%;"
+              data-testid="btn-submit"
+            >
+              Submit Application
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 JobStream Career Portal - Mock Application for QA Automation Testing</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      loadJobDetails();
+    });
+  </script>
+</body>
+</html>
